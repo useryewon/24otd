@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <title>2024 Overseas Travel Destination</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            font-family: "Josefin Sans", sans-serif;
+        }
+
+        .nav-bar {
+            padding-left: 15px;
+            width: 460px;
+            justify-content: space-around;
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-bar a {
+            font-size: 30px;
+            font-weight: 400;
+            opacity: 30%;
+            background-color: transparent;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: "Josefin Sans", sans-serif;
+        }
+
+        .nav-bar a:hover {
+            opacity: 100%;
+            color: red;
+        }
+
+        .outline {
+            position: absolute;
+            top: 75px;
+            left: 10px;
+            bottom: 450px;
+            width: 250px;
+            padding: 15px;
+            line-height: 1.2;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-bar">
+            <li><a href='24_tokyo.html'>Tokyo
+            </a></li>
+            <li><a href='24_london.html'>London
+            </a></li>
+            <li><a href='24_paris.html'>Paris
+            </a></li>
+            <li><a href='24_hongkong.html'>Hongkong
+            </a></li>
+        </ul>
+    </nav>
+
+    <div class="outline" id="outlineText">
+        This site briefly contains memories from overseas travel destinations I visited in 2024. During the one year of free time I was given from last year to this year, I went on many vacations, both domestic and overseas. I almost got tired of traveling for a while as I kept packing and unpacking, but traveling always makes me excited. Who said that all that remains are photos? right. Whenever I look at the photo, the memories of that day are still vivid. The way I remember travel destinations: photos and music. This site contains songs filled with nostalgia for the days I mainly listened to while traveling to each country. Precious memories that have already passed, waiting for the day to return someday...
+    </div>
+
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        window.onload = function() {
+            const outlineElement = document.getElementById('outlineText');
+            const randomColor = getRandomColor();
+            outlineElement.style.color = randomColor;
+        };
+    </script>
+
+</body>
+</html>

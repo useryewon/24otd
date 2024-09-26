@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <title>24destinationtokyo</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
+            font-family: "Josefin Sans", sans-serif;
+        }
+
+        p {
+            color: ghostwhite;
+            opacity: 80%;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 1px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .bk-img {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            cursor: pointer;
+        }
+
+        .bk-img img {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%; 
+            object-fit: contain;
+            transition: transform 0.5s, top 0.5s, left 0.5s;
+            filter: contrast(120%) saturate(130%) brightness(110%);
+        }
+
+        .nav-bar {
+            padding-left: 15px;
+            width: 460px;
+            justify-content: space-around;
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-bar a {
+            font-size: 30px;
+            font-weight: 400;
+            opacity: 30%;
+            background-color: transparent;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: "Josefin Sans", sans-serif;
+        }
+
+        .nav-bar a:hover {
+            opacity: 100%;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-bar">
+            <li ><a href='24_tokyo.html'>Tokyo
+            </a></li>
+            <li><a href='24_london.html'>London
+            </a></li>
+            <li><a href='24_paris.html'>Paris
+            </a></li>
+            <li><a href='24_hongkong.html'>Hongkong
+            </a></li>
+        </ul>
+    </nav>
+
+    <p><span class="material-symbols-outlined" style="font-size: 22px;">music_note</span>Click Background : 東京フラッシュ - Vaundy </p>
+
+    <div class="bk-img" id="background">
+        <img src="1tk.jpg" class="floating-img">
+        <img src="2tk.jpg" class="floating-img">
+        <img src="3tk.jpg" class="floating-img">
+        <img src="4tk.jpg" class="floating-img">
+        <img src="5tk.jpg" class="floating-img">
+        <img src="6tk.jpg" class="floating-img">
+        <img src="7tk.jpg" class="floating-img">
+        <img src="8tk.jpg" class="floating-img">
+        <img src="9tk.jpg" class="floating-img">
+        <img src="10tk.jpg" class="floating-img">
+        <img src="11tk.jpg" class="floating-img">
+        <img src="12tk.jpg" class="floating-img">
+        <img src="13tk.jpg" class="floating-img">
+        <img src="14tk.jpg" class="floating-img">
+        <img src="15tk.jpg" class="floating-img">
+        <img src="16tk.jpg" class="floating-img">
+        <img src="17tk.jpg" class="floating-img">
+        <img src="18tk.jpg" class="floating-img">
+        <img src="19tk.jpg" class="floating-img">
+        <img src="20tk.jpg" class="floating-img">
+        <img src="21tk.jpg" class="floating-img">
+        <img src="22tk.jpg" class="floating-img">
+        <img src="23tk.jpg" class="floating-img">
+        <img src="24tk.jpg" class="floating-img">        
+        <img src="25tk.jpg" class="floating-img">
+        <audio id="backgroundAudio" src="東京フラッシュ.mp3" preload="auto" style="display:none;"></audio>
+
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.floating-img');
+        const audio = document.getElementById('backgroundAudio');
+
+        // 이미지의 초기 크기를 랜덤으로 설정하는 함수
+        function setRandomSize(image) {
+            const randomWidth = Math.random() * (200 - 50) + 50;
+            const randomHeight = randomWidth; // 정사각형으로 유지하려면 width와 height를 동일하게
+            image.style.width = `${randomWidth}px`;
+            image.style.height = `${randomHeight}px`;
+        }
+
+        // 이미지의 초기 위치와 크기를 랜덤하게 설정
+        images.forEach(img => {
+            setRandomPosition(img);
+            setRandomSize(img);
+        });
+
+        // 이미지의 위치를 랜덤하게 설정하는 기존 함수
+        function setRandomPosition(image) {
+            const x = Math.random() * (window.innerWidth - image.width); // 창 너비에서 이미지 크기 빼기
+            const y = Math.random() * (window.innerHeight - image.height); // 창 높이에서 이미지 크기 빼기
+            image.style.left = `${x}px`;
+            image.style.top = `${y}px`;
+        }
+
+        // 마우스 위치를 감지하여 이미지를 흩어지게 하는 함수
+        function scatterImages(mouseX, mouseY) {
+            images.forEach(img => {
+                const imgX = img.offsetLeft + img.width / 2;
+                const imgY = img.offsetTop + img.height / 2;
+
+                const distX = imgX - mouseX;
+                const distY = imgY - mouseY;
+
+                const distance = Math.sqrt(distX * distX + distY * distY);
+                
+                if (distance < 200) { // 마우스와의 거리가 200px 이내일 때
+                    const angle = Math.atan2(distY, distX);
+                    const moveX = Math.cos(angle) * 200;
+                    const moveY = Math.sin(angle) * 200;
+
+                    img.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                } else {
+                    img.style.transform = 'translate(0, 0)';
+                }
+            });
+        }
+
+        // 이미지의 초기 위치를 랜덤하게 설정
+        images.forEach(img => {
+            setRandomPosition(img);
+        });
+
+        // 마우스 움직임에 따라 이미지들이 흩어지는 이벤트 핸들러
+        document.addEventListener('mousemove', (event) => {
+            scatterImages(event.clientX, event.clientY);
+        });
+        
+        // 랜덤 색상을 생성하는 함수
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // 배경색을 랜덤하게 설정하는 함수
+        function changeBackgroundColor() {
+            const randomColor = getRandomColor();
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        // 페이지가 로드될 때 랜덤 배경 색상 설정
+        window.onload = function() {
+            changeBackgroundColor();
+        };
+
+        // 배경 클릭 시 오디오 재생/일시정지
+        const backgroundDiv = document.getElementById('background');
+        backgroundDiv.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
